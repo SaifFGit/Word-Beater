@@ -105,11 +105,14 @@ function startMatch() {
 
 // Match currentWord to wordInput
 function matchWords() {
-  if(wordInput.value === currentWord.innerHTML) {
+  if(wordInput.value.toLowerCase() === currentWord.innerHTML.toLowerCase()) {
+    console.log(currentWord.innerHTML.toLowerCase());
     message.innerHTML = 'Correct!';
+    message.style.color = "green";
     return true;
   } else {
     message.innerHTML = '';
+    message.style.color = "white";
     return false;
   }
 }
@@ -129,6 +132,7 @@ function countdown() {
 function checkStatus() {
   if(!gameOn && time === 0) {
     message.innerHTML = 'Game Over';
+    message.style.color = "red";
     score = -1;
   }
 }
