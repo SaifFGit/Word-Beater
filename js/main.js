@@ -15,9 +15,9 @@ const seconds = document.querySelector('#seconds');
 const levels = { easy: 10, medium: 5, hard: 2 }
 
 // To change level
-const currentLevel = levels.easy;
+var currentLevel = levels.easy;
+var time = currentLevel;
 
-let time = currentLevel;
 let score = 0;
 let gameOn;
 
@@ -49,6 +49,9 @@ async function getData(words) {
 // Initialize game
 function init() {
 
+  // Select a level
+  difficulty();
+
   // Show seconds in UI
   seconds.innerHTML = currentLevel;
 
@@ -68,6 +71,21 @@ function init() {
   setInterval(checkStatus, 50);
 }
 
+// Allows for changing levels
+function difficulty() {
+  var levelSetting = prompt("Please enter your difficulty: (if you mistype, you'll be defaulted to easy)", "easy or medium or hard");
+  if (levelSetting == null) {
+    currentLevel = levels.easy;
+  } else if (levelSetting.trim() == 'easy') {
+    currentLevel = levels.easy;
+  } else if (levelSetting.trim() == 'medium') {
+    currentLevel = levels.medium;
+  } else if (levelSetting.trim() == 'hard') {
+    currentLevel = levels.hard;
+  }
+  time = currentLevel;
+}
+
 // Start Match
 function startMatch() {
   if(matchWords()) {
@@ -77,10 +95,9 @@ function startMatch() {
     wordInput.value = '';
     score++;
   }
-
   // If score is -1, display 0
   if (score === -1) {
-    scoreDisplay.innerHTML = -1;
+    scoreDisplay.innerHTML = 0;
   } else {
     scoreDisplay.innerHTML = score;
   }
