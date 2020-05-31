@@ -52,6 +52,8 @@ function init() {
   // Select a level
   difficulty();
 
+  // Obtains Leaderboard Information
+
   // Show seconds in UI
   seconds.innerHTML = currentLevel;
 
